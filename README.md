@@ -35,4 +35,4 @@ Star Citizen has a similar approach, a part of their "Synchronized Local Physics
 
 # My Planned Solution.
 
-I will be taking a clustered approach similar to star citizen. I can use Unity's PhysicsScene to act as a cluster.
+I will be taking a clustered approach similar to star citizen. I can use Unity's PhysicsScene to act as a cluster, and then implementing floating origin within those closters.
