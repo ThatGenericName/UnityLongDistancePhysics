@@ -10,11 +10,6 @@ public class MultizonePhysicsChild : MonoBehaviour
 
     public MultizonePhysicsParent ParentController;
     
-    void Start()
-    {
-        
-    }
-    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,5 +32,26 @@ public class MultizonePhysicsChild : MonoBehaviour
 
         rb.AddForceAtPosition(impulse, pos, ForceMode.Impulse);
         AppliedForces.Add((pos, impulse));
+    }
+
+    public Vector3 velocity
+    {
+        get => rb.velocity;
+        set => rb.velocity = value;
+    }
+
+
+    public Vector3 angularVelocity
+    {
+        get => rb.angularVelocity;
+        set => rb.angularVelocity = value;
+    }
+    
+    public void AddForceAtRelPosition(Vector3 force, Vector3 position)
+    {
+        var worldPos = transform.TransformPoint(position);
+        var worldDir = transform.TransformDirection(force);
+        
+        rb.AddForceAtPosition(worldDir, worldPos);
     }
 }

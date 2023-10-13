@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MultizonePhysicsParent : MonoBehaviour
 {
@@ -50,33 +51,71 @@ public class MultizonePhysicsParent : MonoBehaviour
 
         Vector3 pt = Vector3.zero;
         Vector3 norm = Vector3.zero;
-        
-        foreach (ContactPoint contact in contactPts)
-        {
-            // compute the average contact point, and then
-            // compute the normal of these contact points.
 
-            pt += contact.point;
-            norm += contact.normal;
+        SychronizePhysicsState();
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        SychronizePhysicsState();
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        SychronizePhysicsState();
+    }
+
+    public void SychronizePhysicsState()
+    {
+        var currentPos = transform.position;
+        var currentRot = transform.rotation;
+        var currentAngVel = rb.angularVelocity;
+        var currentVel = rb.velocity;
+        
+        foreach (var linkedPhysicsObject in LinkedPhysicsObjects)
+        {
+            linkedPhysicsObject.velocity = currentVel;
+            linkedPhysicsObject.angularVelocity = currentAngVel;
+            // test code, we get rid of z values.
+
+
+            var newZ = linkedPhysicsObject.transform.position.z;
+            var k = currentPos;
+            k.z = newZ;
+
+            linkedPhysicsObject.transform.position = k;
+            linkedPhysicsObject.transform.rotation = currentRot;
 
         }
+    }
+    
+    
+    public void AddForceAtRelPosition(Vector3 force, Vector3 position)
+    {
+        var worldPos = transform.TransformPoint(position);
+        var worldDir = transform.TransformDirection(force);
         
-        
-        pt /= contactCount;
-        norm.Normalize();
-        
-        float magnitude = collision.impulse.magnitude;
-        
-        Vector3 newPos = transform.InverseTransformPoint(pt);
-        
-        foreach (var child in LinkedPhysicsObjects)
+        rb.AddForceAtPosition(worldDir, worldPos);
+
+        foreach (var linkedPhysicsObject in LinkedPhysicsObjects)
         {
-            
-            Vector3 forceWithDir = magnitude * norm ;
-            
-            child.ApplyForce(forceWithDir, newPos);
+            linkedPhysicsObject.AddForceAtRelPosition(force, position);
         }
-        
-        int k = 45;
+    }
+
+    public Vector3 velocity
+    {
+        get => rb.velocity;
+        set => SetVelocity(value);
+    }
+    
+    private void SetVelocity(Vector3 velocity)
+    {
+        rb.velocity = velocity;
+
+        foreach (var linkedObject in LinkedPhysicsObjects)
+        {
+            linkedObject.velocity = velocity;
+        }
     }
 }

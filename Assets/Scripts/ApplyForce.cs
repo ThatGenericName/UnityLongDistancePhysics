@@ -11,6 +11,7 @@ public class ApplyForce : MonoBehaviour
     public Vector3 velocityDirection;
     public bool sendForce = false;
     private Rigidbody rb;
+    private MultizonePhysicsWrapper mpw;
     
     void Start()
     {
@@ -22,6 +23,11 @@ public class ApplyForce : MonoBehaviour
         if (rb == null)
         {
             rb = GetComponent<Rigidbody>();
+        }
+
+        if (mpw == null)
+        {
+            mpw = GetComponent<MultizonePhysicsWrapper>();
         }
     }
 
@@ -41,7 +47,7 @@ public class ApplyForce : MonoBehaviour
         if (sendForce)
         {
             sendForce = false;
-            rb.velocity += velocityDirection;
+            mpw.velocity += velocityDirection;
         }
     }
 }
