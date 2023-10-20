@@ -35,4 +35,27 @@ Star Citizen has a similar approach, a part of their "Synchronized Local Physics
 
 # My Planned Solution.
 
-I will be taking a clustered approach similar to star citizen. I can use Unity's PhysicsScene to act as a cluster, and then implementing floating origin within those closters.
+I will be taking a clustered approach similar to star citizen. I can use Unity's PhysicsScene to act as a cluster, and then implementing floating origin within those clusters.
+
+## Challenges
+
+### Larger Value Transforms
+
+A custom numerical type needs to be created to encompass the distance that need to be modelled,
+
+### Floating Origin
+
+Each cluster will have a floating origin with a focus object.
+
+### Clustering Objects
+
+Objects are clustered in an Object Aligned manner. If 2 clusters overlap, objects sitting between the centerpoints of the 2 clusters will be duplicated.
+
+### Synchronization Between Clusters.
+
+As mentioned under Clustering Objects, objects will be duplicated. If an event causes an object to change directions, such as a collision imparting a force, the objects must be synchronized.
+
+### Physics Wrapping and Handling
+Common physics tools in Unity needs to have custom solutions, or additional processing to work.
+
+For example, performing a raycast which may need to span across multiple clusters. 
