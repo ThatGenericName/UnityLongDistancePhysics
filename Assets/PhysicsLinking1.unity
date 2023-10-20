@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 634394874}
   - component: {fileID: 634394879}
   - component: {fileID: 634394880}
+  - component: {fileID: 634394881}
   m_Layer: 0
   m_Name: SphereMain
   m_TagString: Untagged
@@ -441,7 +442,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityDirection: {x: -5, y: 3, z: 0}
-  sendForce: 1
+  sendForce: 0
+--- !u!114 &634394881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634394873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babedef7b3decb64d8eb778ae5ae6c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1570677279
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityDirection: {x: -5, y: 3, z: 0}
-  sendForce: 1
+  sendForce: 0
 --- !u!1 &2061929805
 GameObject:
   m_ObjectHideFlags: 0

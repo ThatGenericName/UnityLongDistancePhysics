@@ -1,8 +1,8 @@
 
-=== Fri Sep  8 20:03:47 2023
+=== Sun Oct 15 00:05:52 2023
 
 Packages were changed.
-Update Mode: mergeDefaultDependencies
+Update Mode: resetToDefaultDependencies
 
 The following packages were added:
   com.unity.collab-proxy@1.15.7
@@ -44,3 +44,18 @@ The following packages were added:
   com.unity.textmeshpro@3.0.6
   com.unity.timeline@1.4.8
   com.unity.ugui@1.0.0
+
+=== Tue Oct 17 12:00:05 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ai.navigation@1.1.5
+The following packages were updated:
+  com.unity.collab-proxy from version 1.15.7 to 2.1.0
+  com.unity.ide.rider from version 2.0.7 to 3.0.25
+  com.unity.ide.visualstudio from version 2.0.12 to 2.0.21
+  com.unity.ide.vscode from version 1.2.4 to 1.2.5
+  com.unity.test-framework from version 1.1.29 to 1.1.33
+  com.unity.timeline from version 1.4.8 to 1.7.5

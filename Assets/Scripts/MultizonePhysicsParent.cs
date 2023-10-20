@@ -53,6 +53,7 @@ public class MultizonePhysicsParent : MonoBehaviour
         Vector3 norm = Vector3.zero;
 
         SychronizePhysicsState();
+        
     }
 
     private void OnCollisionStay(Collision other)

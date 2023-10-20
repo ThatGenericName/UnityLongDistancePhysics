@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/PhysicsLinking1.unity
+- path: Assets/Scripts/CrossSceneInteraction/CrossSceneBase.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
