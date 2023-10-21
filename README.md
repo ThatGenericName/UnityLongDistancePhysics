@@ -1,6 +1,8 @@
 # UnityLongDistancePhysics
 Creating workarounds for floating point precision problems in Unity's Physics Engine.
 
+This project consists experimenting with Unity Engine's capabilities to implement [the different modules](#challenges) that would be required for this project. You can check my progress in [the wiki](https://github.com/ThatGenericName/UnityLongDistancePhysics/wiki)
+
 # Motivation
 
 ## Floating Point Precision
