@@ -1,8 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 
 namespace CrossSceneInteraction
@@ -58,17 +65,18 @@ namespace CrossSceneInteraction
         {
             if (LoadScenesBool)
             {
-                LoadPhysicsScenes();
-                CreatePrefab();
+                LoadDemoPhysicsScenes();
+                CreateDemoPrefabs();
                 LoadScenesBool = false;
             }
-            
-            
-            foreach (var physicsScene in PhysicsScenes)
+
+            // Update Physics Scenes.
+            foreach (var scenePair in PhysicsScenes)
             {
-                physicsScene.Item2.ResetInterpolationPoses();
-                physicsScene.Item2.Simulate(Time.fixedDeltaTime);
+                scenePair.Value.Item2.ResetInterpolationPoses();
+                scenePair.Value.Item2.Simulate(Time.fixedDeltaTime);
             }
+            
             AddForceToObjects();
             ProcessCollisionSynchronizationRequests();
         }
@@ -82,7 +90,7 @@ namespace CrossSceneInteraction
 
         private bool scenesLoaded = false;
 
-        void LoadPhysicsScenes()
+        void LoadDemoPhysicsScenes()
         {
             if (scenesLoaded)
             {
@@ -92,27 +100,28 @@ namespace CrossSceneInteraction
             Scene scene1 = SceneManager.LoadScene("CrossScene_1", loadParams);
             Scene scene2 = SceneManager.LoadScene("CrossScene_2", loadParams);
             
-            PhysicsScenes.Add((scene2, scene2.GetPhysicsScene()));
-            PhysicsScenes.Add((scene1, scene1.GetPhysicsScene()));
+            PhysicsScenes[physicsScenesIDTrack++] = (scene2, scene2.GetPhysicsScene());
+            PhysicsScenes[physicsScenesIDTrack++] = (scene1, scene1.GetPhysicsScene());
             scenesLoaded = true;
         }
         
 
         public GameObject testPhysicsObjectPrefab;
 
-        public List<(Scene, PhysicsScene)> PhysicsScenes = new List<(Scene, PhysicsScene)>();
+        private int physicsScenesIDTrack = 0;
+        public Dictionary<int, (Scene, PhysicsScene)> PhysicsScenes = new Dictionary<int, (Scene, PhysicsScene)>();
 
         private int physicsObjectTrack = 0;
-        public Dictionary<int, List<CSI_PhysicsObject>> PhysicsObjects = new Dictionary<int, List<CSI_PhysicsObject>>();
+        public readonly Dictionary<int, Dictionary<int, CSI_PhysicsObject>> PhysicsObjects = new Dictionary<int, Dictionary<int, CSI_PhysicsObject>>();
 
-        public void CreatePrefab()
+        public void CreateDemoPrefabs()
         {
-            CreatePrefab(Vector3.zero, Quaternion.identity);
+            CreateDemoPrefabs(Vector3.zero, Quaternion.identity);
         }
         
-        public void CreatePrefab(Vector3 position, Quaternion rotation)
+        public void CreateDemoPrefabs(Vector3 position, Quaternion rotation)
         {
-            var objectList = new List<CSI_PhysicsObject>();
+            var objectList = new Dictionary<int, CSI_PhysicsObject>();
             PhysicsObjects[physicsObjectTrack] = objectList;
             for (int i = 0; i < PhysicsScenes.Count; i++)
             {
@@ -121,61 +130,104 @@ namespace CrossSceneInteraction
                 var newObjectPO = newObject.GetComponent<CSI_PhysicsObject>();
                 newObjectPO.CSI_ObjectID = physicsObjectTrack;
                 newObjectPO.CSI_ObjectSubID = i;
-                objectList.Add(newObject.GetComponent<CSI_PhysicsObject>());
+                objectList.Add(i, newObject.GetComponent<CSI_PhysicsObject>());
                 SceneManager.MoveGameObjectToScene(newObject, physicsScenePair.Item1);
             }
 
             physicsObjectTrack++;
         }
 
-        private Dictionary<int, CSI_CollisionSyncData[]> collisionData = new Dictionary<int, CSI_CollisionSyncData[]>();
+        private Dictionary<int, Dictionary<int, CSI_CollisionSyncData>> collisionSyncRequestData = new();
+        // structured as such ObjectID > CollisionOtherID > Data
 
         public void AddCollisionSynchronizationRequest(CSI_CollisionSyncData csiCollisionSyncData)
         {
-            int objectId = csiCollisionSyncData.ObjectID;
+            int objectID = csiCollisionSyncData.ObjectID;
+            int otherID = csiCollisionSyncData.OtherObjectID;
             
-            CSI_CollisionSyncData[] dataArray;
-            if (!collisionData.ContainsKey(objectId))
+            Dictionary<int, CSI_CollisionSyncData> objectSyncData;
+            if (!collisionSyncRequestData.ContainsKey(objectID))
             {
-                dataArray = new CSI_CollisionSyncData[PhysicsObjects[objectId].Count];
-                collisionData[objectId] = dataArray;
+                objectSyncData = new Dictionary<int, CSI_CollisionSyncData>();
+                collisionSyncRequestData[objectID] = objectSyncData;
             }
             else
             {
-                dataArray = collisionData[objectId];
+                objectSyncData = collisionSyncRequestData[objectID];
             }
-
-            dataArray[csiCollisionSyncData.ObjectSubID] = csiCollisionSyncData;
+            
+            if (!objectSyncData.ContainsKey(otherID))
+            {
+                objectSyncData[otherID] = csiCollisionSyncData;
+            }
         }
 
         private void ProcessCollisionSynchronizationRequests()
         {
-            foreach (var objectCollisionDataPair in collisionData)
+            foreach (var objectRequest in collisionSyncRequestData)
             {
-                int ObjectID = objectCollisionDataPair.Key;
-                var collisionSyncDataArray = objectCollisionDataPair.Value;
-
-                for (int subID = 0; subID < objectCollisionDataPair.Value.Length; subID++)
+                var dataPairs = objectRequest.Value.ToArray();
+                
+                if (dataPairs.Length == 1)
                 {
-                    var collisionSyncData = collisionSyncDataArray[subID];
+                    var syncData = objectRequest.Value.Values.Single();
+                    int objectID = syncData.ObjectID;
+                    int subObjectID = syncData.ObjectSubID;
+                    
+                    SynchronizeObjectsToSubObject(objectID, subObjectID);
+                }
+                else
+                {
+                    Vector3 deltaVelocityResult = Vector3.zero;
+                    Vector3 deltaAngularVelocityResult = Vector3.zero;
+                    Vector3 deltaPositionResult = Vector3.zero;
 
-                    if (collisionSyncData != null)
+                    int count = 0;
+
+                    var tempObj = dataPairs[0].Value;
+                    
+                    Vector3 originalVelocity = tempObj.PreVelocity;
+                    Vector3 originalAngularVelocity = tempObj.PreAngularVelocity;
+                    Vector3 originalPosition = tempObj.PrePosition;
+                    
+                    foreach (var collisionSyncData in dataPairs)
                     {
-                        SynchronizeObject(ObjectID, subID);
-                        break;
+                        count++;
+                        var data = collisionSyncData.Value;
+                        deltaVelocityResult += data.DeltaVelocity;
+                        deltaAngularVelocityResult += data.DeltaAngularVelocity;
+                        deltaPositionResult += data.DeltaPosition;
+                    }
+
+                    deltaPositionResult /= count;
+                    deltaVelocityResult /= count;
+                    deltaAngularVelocityResult /= count;
+
+                    Vector3 newPosition = originalPosition + deltaPositionResult;
+                    Vector3 newVelocity = originalVelocity + deltaVelocityResult;
+                    Vector3 newAngularVelocity = originalAngularVelocity + deltaAngularVelocityResult;
+                    
+                    var subObjects = PhysicsObjects[objectRequest.Key];
+                    for (int i = 0; i < subObjects.Count; i++)
+                    {
+                        var subObject = subObjects[i];
+                        subObject.transform.position = newPosition;
+                        subObject.rb.velocity = newVelocity;
+                        subObject.rb.angularVelocity = newAngularVelocity;
                     }
                 }
             }
-            collisionData.Clear();
+            
+            collisionSyncRequestData.Clear();
         }
 
-        private void SynchronizeObject(int ObjId, int ObjSubID)
+        private void SynchronizeObjectsToSubObject(int ObjId, int HostSubID)
         {
             var subObjects = PhysicsObjects[ObjId];
-            var subObjectSyncHost = subObjects[ObjSubID];
+            var subObjectSyncHost = subObjects[HostSubID];
             for (int i = 0; i < subObjects.Count; i++)
             {
-                if (ObjSubID == i)
+                if (HostSubID == i)
                 {
                     continue;
                 }
@@ -209,7 +261,7 @@ namespace CrossSceneInteraction
 
                 foreach (var subObject in physicsObjectList)
                 {
-                    subObject.rb.AddForce(forceDataPair.Value, ForceMode.Impulse);
+                    subObject.Value.rb.AddForce(forceDataPair.Value, ForceMode.Impulse);
                 }
             }
             

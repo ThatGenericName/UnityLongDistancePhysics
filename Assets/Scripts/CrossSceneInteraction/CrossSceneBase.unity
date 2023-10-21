@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253878fdec8f64748b557dd0cdd74222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadScenesBool: 1
   testPhysicsObjectPrefab: {fileID: 3737697442376348810, guid: d549ced0c01ecb04ba06283601859a5f, type: 3}
 --- !u!4 &379111280
 Transform:
