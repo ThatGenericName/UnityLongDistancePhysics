@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\WanderingObject.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_CollisionSyncData.cs" />
+     <Compile Include="Assets\Scripts\CrossSceneInteraction\CrossSceneInteractionDemo1.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\PhysicsObjects\MultiClusterPhysicsObject.cs" />
      <Compile Include="Assets\Scripts\Zone.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\SimulationClock.cs" />

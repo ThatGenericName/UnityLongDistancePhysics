@@ -104,6 +104,20 @@ namespace CrossSceneInteraction
             PhysicsScenes[physicsScenesIDTrack++] = (scene1, scene1.GetPhysicsScene());
             scenesLoaded = true;
         }
+
+
+        public void CreatePhysicsScene()
+        {
+            int nextId = physicsScenesIDTrack++;
+            LoadSceneParameters loadParams = new LoadSceneParameters(LoadSceneMode.Additive, LocalPhysicsMode.Physics3D);
+            Scene scene = SceneManager.LoadScene("CrossSceneEmpty", loadParams);
+            PhysicsScenes[nextId] = (scene, scene.GetPhysicsScene());
+
+            foreach (var pObjDataKV in PhysicsObjects)
+            {
+                CopyPhysicsObjectToScene(pObjDataKV.Key, nextId);
+            }
+        }
         
 
         public GameObject testPhysicsObjectPrefab;
@@ -121,21 +135,86 @@ namespace CrossSceneInteraction
         
         public void CreateDemoPrefabs(Vector3 position, Quaternion rotation)
         {
+            int newObjectID = physicsObjectTrack++;
             var objectList = new Dictionary<int, CSI_PhysicsObject>();
-            PhysicsObjects[physicsObjectTrack] = objectList;
-            for (int i = 0; i < PhysicsScenes.Count; i++)
+            PhysicsObjects[newObjectID] = objectList;
+            int i = 0;
+            
+            foreach (var physicsSceneKvp in PhysicsScenes)
             {
-                var physicsScenePair = PhysicsScenes[i];
+                var physicsScenePair = physicsSceneKvp.Value;
                 var newObject = Instantiate(testPhysicsObjectPrefab, position, rotation);
                 var newObjectPO = newObject.GetComponent<CSI_PhysicsObject>();
-                newObjectPO.CSI_ObjectID = physicsObjectTrack;
-                newObjectPO.CSI_ObjectSubID = i;
-                objectList.Add(i, newObject.GetComponent<CSI_PhysicsObject>());
+                newObjectPO.CSI_ObjectID = newObjectID;
+                newObjectPO.CSI_ObjectSubID = i++;
+                objectList.Add(newObjectPO.CSI_ObjectSubID, newObject.GetComponent<CSI_PhysicsObject>());
                 SceneManager.MoveGameObjectToScene(newObject, physicsScenePair.Item1);
             }
-
-            physicsObjectTrack++;
         }
+
+        public void CopyPhysicsObjectToScene(int csObjectID, int sceneID)
+        {
+            if (!PhysicsObjects.ContainsKey(csObjectID) || !PhysicsScenes.ContainsKey(sceneID))
+            {
+                return;
+            }
+
+            var objectList = PhysicsObjects[csObjectID];
+            int newSubID = objectList.Keys.Max() + 1;
+            
+            var physicsScenePair = PhysicsScenes[sceneID];
+
+            var gameObjectToClone = objectList[newSubID - 1];
+            var baseObjectTransform = gameObjectToClone.transform;
+            var newObject = Instantiate(gameObjectToClone.gameObject, baseObjectTransform.position, baseObjectTransform.rotation);
+            var newObjectPO = newObject.GetComponent<CSI_PhysicsObject>();
+            newObjectPO.CSI_ObjectID = csObjectID;
+            newObjectPO.CSI_ObjectSubID = newSubID;
+            
+            SceneManager.MoveGameObjectToScene(newObject, physicsScenePair.Item1);
+            
+        }
+        
+        
+        public void InstantiatePrefab(GameObject gameObject, Vector3 position, Quaternion rotation)
+        {
+            int newObjectID = physicsObjectTrack++;
+            var objectList = new Dictionary<int, CSI_PhysicsObject>();
+            PhysicsObjects[newObjectID] = objectList;
+
+            int subObjectID = 0;
+
+            foreach (var sceneID in PhysicsScenes.Keys)
+            {
+                InstantiatePrefabSingleScene(gameObject, position, rotation, sceneID, newObjectID, subObjectID++);
+            }
+        }
+
+        public bool InstantiatePrefabSingleScene(GameObject gameObject, Vector3 position, Quaternion rotation, 
+            int sceneID, int physicsObjectID = -1, int subObjectID = 0)
+        {
+            if (!PhysicsScenes.ContainsKey(sceneID))
+            {
+                return false;
+            }
+
+            if (physicsObjectID == -1)
+            {
+                physicsObjectID = physicsObjectTrack++;
+            }
+            var objectList = new Dictionary<int, CSI_PhysicsObject>();
+            PhysicsObjects[physicsObjectID] = objectList;
+            var physicsScenePair = PhysicsScenes[sceneID];
+            var newObject = Instantiate(gameObject, position, rotation);
+            var newObjectPO = newObject.GetComponent<CSI_PhysicsObject>();
+            newObjectPO.CSI_ObjectID = physicsObjectID;
+            newObjectPO.CSI_ObjectSubID = subObjectID;
+            objectList.Add(subObjectID, newObject.GetComponent<CSI_PhysicsObject>());
+            SceneManager.MoveGameObjectToScene(newObject, physicsScenePair.Item1);
+
+            return true;
+        }
+        
 
         private Dictionary<int, Dictionary<int, CSI_CollisionSyncData>> collisionSyncRequestData = new();
         // structured as such ObjectID > CollisionOtherID > Data
@@ -225,14 +304,15 @@ namespace CrossSceneInteraction
         {
             var subObjects = PhysicsObjects[ObjId];
             var subObjectSyncHost = subObjects[HostSubID];
-            for (int i = 0; i < subObjects.Count; i++)
+
+            foreach (var subObjectPair in subObjects)
             {
-                if (HostSubID == i)
+                if (subObjectPair.Key == HostSubID)
                 {
                     continue;
                 }
+                var subObject = subObjectPair.Value;
                 
-                var subObject = subObjects[i];
                 subObject.transform.position = subObjectSyncHost.transform.position;
                 subObject.rb.velocity = subObjectSyncHost.rb.velocity;
                 subObject.rb.angularVelocity = subObjectSyncHost.rb.angularVelocity;

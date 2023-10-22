@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379111280}
   - component: {fileID: 379111279}
+  - component: {fileID: 379111281}
   m_Layer: 0
   m_Name: ControllerSingletons
   m_TagString: Untagged
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253878fdec8f64748b557dd0cdd74222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadScenesBool: 1
+  LoadScenesBool: 0
   testPhysicsObjectPrefab: {fileID: 3737697442376348810, guid: d549ced0c01ecb04ba06283601859a5f, type: 3}
 --- !u!4 &379111280
 Transform:
@@ -169,6 +170,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &379111281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379111278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb164c1c0544cc84fba2e011a830c14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallSection: {fileID: 8638115415822287032, guid: 97a1e5caecbcba0409aa6231a063c308, type: 3}
+  depth: 8
+  CreateDemoScene: 1
+  CopyAcrossAllScenes: 0
+  SegmentsPerScene: 5
 --- !u!1 &1375723536
 GameObject:
   m_ObjectHideFlags: 0
