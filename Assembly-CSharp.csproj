@@ -54,22 +54,137 @@
      <Compile Include="Assets\Scripts\MultizonePhysicsChild.cs" />
      <Compile Include="Assets\Scripts\ZoningController.cs" />
      <Compile Include="Assets\Scripts\ApplyForce.cs" />
+     <Compile Include="Assets\Scripts\FloatingOrigin\MathHP.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\PhysicsObjects\MultiClusterPhysicsChild.cs" />
+     <Compile Include="Assets\Scripts\FloatingOrigin\HighPrecisionNumber.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_ApplyForce.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\PhysicsObjects\MultiClusterPhysicsObjectController.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\PhysicsObjects\MultiClusterPhysicsParent.cs" />
      <Compile Include="Assets\Scripts\ChunkController.cs" />
      <Compile Include="Assets\Scripts\MultizonePhysicsParent.cs" />
+     <Compile Include="Assets\Scripts\FloatingOrigin\Vector3HP.cs" />
      <Compile Include="Assets\MultizonePhysicsWrapper.cs" />
      <Compile Include="Assets\Scripts\Chunk.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_PhysicsObject.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CrossSceneInteractionController.cs" />
      <Folder Include="Assets" />
+     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0\package.json" />
      <Folder Include="Assets\Scripts\CrossSceneInteraction" />
+     <Folder Include="Library\PackageCache\com.unity.test-framework@1.1.33" />
+     <None Include="Library\PackageCache\com.unity.modules.screencapture@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.cloth@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.imgui@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.ai@1.0.0\package.json" />
+     <Folder Include="Assets\Scripts\FloatingOrigin" />
+     <Folder Include="Library\PackageCache\com.unity.modules.animation@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.ugui@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.xr@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.26\Rider" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources" />
+     <None Include="Library\PackageCache\com.unity.modules.assetbundle@1.0.0\package.json" />
      <Folder Include="Assets\Scripts\LongDistancePhysics\PhysicsObjects" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.imgui@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.tilemap@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.assetbundle@1.0.0" />
      <Folder Include="Assets\Scenes" />
+     <None Include="Library\PackageCache\com.unity.timeline@1.7.5\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom" />
+     <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\Gizmos" />
+     <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.21\ValidationConfig.json" />
+     <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35" />
+     <None Include="Library\PackageCache\com.unity.modules.terrainphysics@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.screencapture@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.timeline@1.7.5\ValidationExceptions.json" />
+     <None Include="Library\PackageCache\com.unity.collab-proxy@2.1.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.timeline@1.7.5" />
+     <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\Tests" />
+     <Folder Include="Library\PackageCache\com.unity.modules.cloth@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData.json" />
+     <None Include="Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6" />
+     <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.21\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.imageconversion@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.terrainphysics@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.imageconversion@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\ValidationExceptions.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0" />
      <Folder Include="Assets\Scripts" />
+     <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.ide.rider@3.0.26\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.video@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.test-framework@1.1.33\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.physics@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts" />
+     <Folder Include="Library\PackageCache\com.unity.modules.vr@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.physics2d@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.1.5" />
+     <None Include="Library\PackageCache\com.unity.modules.particlesystem@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.wind@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.physics2d@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.vr@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.uielements@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.particlesystem@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.21\ValidationExceptions.json" />
+     <None Include="Library\PackageCache\com.unity.modules.wind@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Tests" />
+     <None Include="Library\PackageCache\com.unity.modules.umbra@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Textures" />
+     <Folder Include="Library\PackageCache\com.unity.modules.tilemap@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.ui@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Gizmos" />
+     <None Include="Library\PackageCache\com.unity.modules.audio@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.physics@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.1.0" />
+     <None Include="Library\PackageCache\com.unity.modules.vehicles@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\EditorResources\Overlay" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6" />
+     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.26" />
+     <None Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0\package.json" />
      <Folder Include="Assets\Scripts\LongDistancePhysics" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF_SSD.cginc" />
+     <None Include="Library\PackageCache\com.unity.collab-proxy@2.1.0\ValidationConfig.json" />
+     <None Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ide.vscode@1.2.5" />
+     <Folder Include="Library\PackageCache\com.unity.modules.vehicles@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.xr@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Tests" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_Properties.cginc" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF Internal Editor.shader" />
+     <Folder Include="Library\PackageCache\com.unity.modules.umbra@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\EditorResources" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.1.0\Lib" />
+     <None Include="Library\PackageCache\com.unity.modules.director@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\ValidationExceptions.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders" />
+     <Folder Include="Library\PackageCache\com.unity.modules.director@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.audio@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.terrain@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.21" />
+     <None Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.video@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.modules.ai@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData_Assets.json" />
+     <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Package Resources" />
+     <Folder Include="Library\PackageCache\com.unity.modules.terrain@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.animation@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.modules.uielements@1.0.0\package.json" />
+     <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0" />
+     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0" />
+     <None Include="Library\PackageCache\com.unity.modules.ui@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\package.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -685,50 +800,64 @@
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Timeline">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.AI.Navigation">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.AI.Navigation.Updater">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEditor.UI">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEngine.UI">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.AI.Navigation.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Rider.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VSCode.Editor">
-     <HintPath>D:\OneDrive\CodingProjects\UnityAdventures\UnityLongDistancePhysics\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{91aab912-c95a-ea77-6e5b-72636d94926e}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.csproj">
+      <Project>{ea6631b9-3a09-0f47-39fa-13b67a103819}</Project>
+      <Name>Unity.AI.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{7b8e76cb-b905-c2b1-5de7-55b12605164e}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj">
+      <Project>{71a75883-0e64-30bf-0a48-a1816617abd1}</Project>
+      <Name>Unity.AI.Navigation.Updater</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{3082163d-6a6f-dd3d-252e-f3839a923b42}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
+      <Project>{25579da5-81af-edbf-573a-42cd289fe9aa}</Project>
+      <Name>Unity.VisualStudio.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{3d25bb43-b903-7620-55f0-ae09e703d6c4}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{0de379bc-fff1-eefd-a0aa-2e92f01c37cd}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{c9f024cc-5018-064f-4e53-57544ec1b732}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{8b0a8e4b-ebe0-64ff-92ef-5b0446132ff6}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
+      <Project>{52f8b93e-eb83-90f9-2c26-5512b8123ca1}</Project>
+      <Name>Unity.AI.Navigation.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{0582eafd-ae11-89c5-a0dd-3eb125ac29cd}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj">
+      <Project>{709415d0-731b-a857-3a4b-5a0420f7ce0e}</Project>
+      <Name>Unity.AI.Navigation.Editor.ConversionSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{8070bc78-4588-16ba-4311-cd1258c4b601}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
