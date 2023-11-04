@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\MultizonePhysicsParent.cs" />
      <Compile Include="Assets\Scripts\FloatingOrigin\Vector3HP.cs" />
      <Compile Include="Assets\MultizonePhysicsWrapper.cs" />
+     <Compile Include="Assets\Scripts\LongDistancePhysics\SDecimal.cs" />
      <Compile Include="Assets\Scripts\Chunk.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_PhysicsObject.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CrossSceneInteractionController.cs" />
