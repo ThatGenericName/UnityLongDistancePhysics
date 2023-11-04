@@ -6,7 +6,6 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using UnityEngine.SocialPlatforms.GameCenter;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 

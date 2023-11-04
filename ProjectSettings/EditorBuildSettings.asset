@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scripts/CrossSceneInteraction/CrossScene_2.unity
     guid: 4b72049677d19ae42ae5d4153eb8dda9
+  - enabled: 1
+    path: Assets/Scripts/CrossSceneInteraction/CrossSceneEmpty.unity
+    guid: 3031b129e6d2f4a47a14640b5ad44f4f
   m_configObjects: {}
