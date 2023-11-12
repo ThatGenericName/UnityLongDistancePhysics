@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scripts/CrossSceneInteraction/CrossSceneBase.unity
+- path: Assets/Scripts/ObjectZoning2/ObjectZoningTest2.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
