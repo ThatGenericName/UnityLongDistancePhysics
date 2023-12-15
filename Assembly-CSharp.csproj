@@ -45,6 +45,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ObjectZoning3\StaticBoundingVolumeController.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\TrackedObjectGenerator.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_CollisionSyncData.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CrossSceneInteractionDemo1.cs" />
@@ -52,6 +53,8 @@
      <Compile Include="Assets\Scripts\ObjectZoning2\DynamicBoundingVolumeController.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\TrackedObject.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\SimulationClock.cs" />
+     <Compile Include="Assets\Scripts\LongDistancePhysics\BoundsExtension.cs" />
+     <Compile Include="Assets\Scripts\ObjectZoning3\TrackedObject.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning1\TrackedObject.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\StaticBoundingVolumeController.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\RandomExtension.cs" />
@@ -60,6 +63,7 @@
      <Compile Include="Assets\Scripts\LongDistancePhysics\MathLDP.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning1\BoundingVolumeVisualizer.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\BoundingVolumeVisualizer.cs" />
+     <Compile Include="Assets\Scripts\ObjectZoning3\StaticBVNode.cs" />
      <Compile Include="Assets\Scripts\FloatingOrigin\MathHP.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning1\TrackedObjectController.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning1\TrackedObjectGenerator.cs" />
@@ -71,12 +75,16 @@
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_ApplyForce.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\StaticBoundingVolumeNode.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\Physics\CrossSceneInteraction\CollisionSyncData.cs" />
+     <Compile Include="Assets\Scripts\ObjectZoning3\DynamicBoundingVolumeController.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\Physics\LDPTransform.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\DynamicBoundingVolumeNode.cs" />
      <Compile Include="Assets\Scripts\FloatingOrigin\Vector3HP.cs" />
+     <Compile Include="Assets\Scripts\ObjectZoning3\DynamicBVNode.cs" />
+     <Compile Include="Assets\Scripts\ObjectZoning3\TrackedObjectController.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning1\StaticBoundingVolume.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\ObjectIDList.cs" />
      <Compile Include="Assets\Scripts\LongDistancePhysics\Physics\DebugApplyForce.cs" />
+     <Compile Include="Assets\Scripts\LongDistancePhysics\DebugLDP.cs" />
      <Compile Include="Assets\Scripts\ObjectZoning2\TrackedObjectController.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CSI_PhysicsObject.cs" />
      <Compile Include="Assets\Scripts\CrossSceneInteraction\CrossSceneInteractionController.cs" />
@@ -168,6 +176,7 @@
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF_SSD.cginc" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.1.0\ValidationConfig.json" />
      <None Include="Library\PackageCache\com.unity.ai.navigation@1.1.5\package.json" />
+     <Folder Include="Assets\Scripts\ObjectZoning3" />
      <Folder Include="Library\PackageCache\com.unity.ide.vscode@1.2.5" />
      <Folder Include="Library\PackageCache\com.unity.modules.vehicles@1.0.0" />
      <Folder Include="Assets\Scripts\LongDistancePhysics\Physics\CrossSceneInteraction" />
