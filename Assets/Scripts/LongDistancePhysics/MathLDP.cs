@@ -77,11 +77,16 @@ namespace LongDistancePhysics
             return x * x + y * y + z * z;
         }
         
-        public static Vector3 PointDistanceToBoxVec(Vector3 query, Vector3 boxMin, Vector3 boxMax)
+        public static Vector3 PointDistanceToBoxVec(Vector3 query, Vector3 boxMin, Vector3 boxMax, Vector3 boxMid)
         {
-            float x = Math.Max(Math.Max(boxMin.x - query.x, 0), query.x - boxMax.x);
-            float y = Math.Max(Math.Max(boxMin.y - query.y, 0), query.y - boxMax.y);
-            float z = Math.Max(Math.Max(boxMin.z - query.z, 0), query.z - boxMax.z);
+            Vector3 q1 = boxMin - query;
+            Vector3 q2 = query - boxMax;
+            Vector3 diff = boxMid - query;
+            
+            
+            float x = Math.Max(Math.Max(q1.x, 0), q2.x) * Mathf.Sign(diff.x);
+            float y = Math.Max(Math.Max(q1.y, 0), q2.y) * Mathf.Sign(diff.y);
+            float z = Math.Max(Math.Max(q1.z, 0), q2.z) * Mathf.Sign(diff.z);;
             return new(x, y, z);
         }
 
@@ -92,7 +97,16 @@ namespace LongDistancePhysics
             float diffZ = Math.Abs(a.z - b.z);
             return diffX <= limit && diffY <= limit && diffZ < limit;
         }
-
+        
+        public static bool WithinLinearDistance(Vector3 a, Vector3 b, float limit, out float linDist)
+        {
+            float diffX = Math.Abs(b.x - a.x);
+            float diffY = Math.Abs(a.y - b.y);
+            float diffZ = Math.Abs(a.z - b.z);
+            linDist = Math.Max(Math.Max(diffX, diffY), diffZ);
+            return diffX <= limit && diffY <= limit && diffZ < limit;
+        }
+        
         public static bool WithinLinearDistance(Vector3 a, Vector3 b, Vector3 limits)
         {
             float diffX = Math.Abs(b.x - a.x);
@@ -108,7 +122,17 @@ namespace LongDistancePhysics
         }
         
         // TODO: Implement WithinLinearDistance with Vector3m
-
+    
+        public static float GetLinearDistance(Vector3 a, Vector3 b)
+        {
+            var diff = a - b;
+            float diffX = Math.Abs(diff.x);
+            float diffY = Math.Abs(diff.y);
+            float diffZ = Math.Abs(diff.z);
+            return Math.Max(Math.Max(diffX, diffY), diffZ);
+        }
+        
+        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Overlap1D(float aMin, float aMax, float bMin, float bMax)
         {
@@ -178,7 +202,7 @@ namespace LongDistancePhysics
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector3Int CalculateXYZVector3Int(Vector3 position, float division)
+        public static Vector3Int CalculateXYZToInt(Vector3 position, float division)
         {
             var pos = position;
             int x = Mathf.FloorToInt(pos.x / division);
@@ -186,8 +210,6 @@ namespace LongDistancePhysics
             int z = Mathf.FloorToInt(pos.z / division);
             return new (x, y, z);
         }
-
-        
         
         // Some Vector Extensions
         public static bool LessThan(this Vector3 a, Vector3 b)
@@ -266,6 +288,47 @@ namespace LongDistancePhysics
                 (corners[6], corners[7]),
                 (corners[7], corners[4])
             };
+        }
+
+
+        /// <summary>
+        /// Determines from the perspective of <c>a</c> whether <c>c</c> is
+        /// behind <c>b</c> or not. 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool IsBehind(Vector3 a, Vector3 b, Vector3 c)
+        {
+            Vector3 planeNorm = a - b;
+            // center everything such that b is at the origin, this will simplify our math
+            c =- b;
+            var dp = Vector3.Dot(planeNorm, c);
+            return (dp < 0);
+        }
+        
+        /// <summary>
+        /// Determines from the perspective of <c>a</c> whether <c>c</c> is
+        /// behind <c>b</c> or not with an angular check.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool IsBehindAngle(Vector3 a, Vector3 b, Vector3 c, float angleThreshold)
+        {
+            Vector3 bToa = a - b;
+            Vector3 bToc = c - b;
+            Vector3 aToC = c - a;
+            float ang = Vector3.Angle(aToC, -bToa);
+
+            if (ang > angleThreshold)
+            {
+                return false;
+            }
+
+            return Vector3.Dot(bToa, bToc) < 0;
         }
     }
 }

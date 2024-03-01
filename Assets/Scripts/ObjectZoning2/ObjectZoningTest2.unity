@@ -211,6 +211,7 @@ MonoBehaviour:
   PriorityZeroObjs: []
   PriorityOneObjs: []
   PriorityTwoObjs: []
+  <Initialized>k__BackingField: 0
 --- !u!114 &360300187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a84a72aea7403980258d9c8da0de69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sbv: {fileID: 0}
   boundaryMarkerPrefab: {fileID: 772294854934498086, guid: 7c3f3909a9e403a4f99a3a9675fd85b8, type: 3}
   zoningMode: 1
 --- !u!1 &936632834
